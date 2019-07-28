@@ -1,12 +1,12 @@
 /* 
-COLORS:
+COLORS:e
 
 Light green: #7ed56f
 Medium green: #55c57a
 Dark green: #28b485
  */
 
-* {
+ * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -45,15 +45,18 @@ body {
 
 .text-box {
   position: absolute;
-  top: 42%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
+  /* background-color: black; */
 
 }
 
 .heading-primary {
   color: #ffffff;
-  text-transform: uppercase
+  text-transform: uppercase;
+  margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -61,6 +64,21 @@ body {
   font-size: 60px;
   font-weight: 400;
   letter-spacing: 35px;
+
+  animation-name: moveInLeft;
+  animation-duration: 1.7s;
+
+  /*FUnction just defines how the animation will happen over time */
+  animation-timing-function: ease-out;
+
+
+  /*How many time the animation will be done 
+  animation-iteration-count: 3;
+
+  /* animation-delay: 3s; */
+
+  backface-visibility: hidden;
+
 }
 
 .heading-primary-sub {
@@ -68,4 +86,106 @@ body {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 20px;
+
+  animation: moveInRight 1.7s ease-out;
+
+}
+
+
+
+/*Animation is created like this and used above*/
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+
+  }
+
+  80% {
+
+    transform: translateX(15px);
+
+  }
+
+  100% {
+    opacity: 1;
+
+    /* We use tranlate 0 since it just renders it to how it actually is */
+    transform: translate(0);
+  }
+}
+
+/*Animation is created like this and used above*/
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(+100px);
+
+  }
+
+  80% {
+
+    transform: translateX(-15px);
+
+  }
+
+  100% {
+    opacity: 1;
+    /* We use tranlate 0 since it just renders it to how it actually is */
+    transform: translate(0);
+  }
+
+
+}
+
+/*Below is a pseudo class. We use it to style elements in special cases */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+  /* Relative to the position absolute below */
+  position: relative
+}
+
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, .2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Defines the position of the element if they are one behind each other */
+  z-index: -1;
+
+  transition: all .4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.2) scaleY(1.2);
+  opacity: 0;
 }
